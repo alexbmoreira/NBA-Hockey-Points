@@ -184,7 +184,7 @@ dmypy.json
 .pytype/
 
 # exported csv
-hockey_points.csv
+*.csv
 
     © 2020 GitHub, Inc.
     Terms

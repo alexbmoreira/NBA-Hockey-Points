@@ -33,11 +33,14 @@ URL = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        "https://www.basketball-reference.com/teams/UTA/2020_games.html", \
        "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
        ]
-FILE = open("hockey_points.csv", "w")
+TEAM_FILE = open("hockey_points_team.csv", "w")
+POINTS_FILE = open("hockey_points.csv", "w")
 
 def scrape():
-    csv_header = "games_played,team_name,opp_name,result,overtime,points\n"
-    csv_string = ""
+    team_csv_header = "games_played,team_name,opp_name,result,overtime,points\n"
+    team_csv_string = ""
+    points_csv_header = "games_played,team_name,points\n"
+    points_csv_string = ""
 
     for link in URL:
         request = requests.get(link)
@@ -47,6 +50,7 @@ def scrape():
             continue
         
         points = 0
+        gp = 0
 
         page = request.text
         page = bs(page, "html.parser")
@@ -58,16 +62,20 @@ def scrape():
         overtimes = np.array(page.find_all("td", {"data-stat": "overtimes"}))
         
         for i, (team, game_result, overtime) in enumerate(zip(teams, game_results, overtimes)):
+            if game_result.text != "":
+                gp += 1
             if (overtime.text != "") == True and game_result.text == "L":
                 points += 1
             elif game_result.text == "W":
                 points += 2
 
-            csv_string += str(i + 1) + "," + team_name + "," + team.text + "," \
+            team_csv_string += str(i + 1) + "," + team_name + "," + team.text + "," \
                         + game_result.text + "," + overtime.text + "," + str(points) + "\n"
 
+        points_csv_string += str(gp) + "," + team_name + "," + str(points) + "\n"
 
-    FILE.write(csv_header + csv_string)
+    POINTS_FILE.write(points_csv_header + points_csv_string)
+    TEAM_FILE.write(team_csv_header + team_csv_string)
 
 scrape()
-FILE.close()
+TEAM_FILE.close()

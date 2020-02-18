@@ -62,7 +62,7 @@ for link in url:
         elif game_results[i].text == "W":
             points += 2
 
-        csv_string += str(i) + "," + team_name + "," + teams[i].text + "," \
+        csv_string += str(i + 1) + "," + team_name + "," + teams[i].text + "," \
                     + game_results[i].text + "," + overtime[i].text + "," + str(points) + "\n"
 
     file.write(csv_string)

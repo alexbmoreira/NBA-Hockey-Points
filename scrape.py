@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup as bs
 import numpy as np
 
-url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
+URL = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
        "https://www.basketball-reference.com/teams/BRK/2020_games.html", \
        "https://www.basketball-reference.com/teams/CHO/2020_games.html", \
@@ -33,39 +33,41 @@ url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        "https://www.basketball-reference.com/teams/UTA/2020_games.html", \
        "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
        ]
+FILE = open("hockey_points.csv", "w")
 
-file = open("hockey_points.csv", "w")
-csv_header = "games_played,team_name,opp_name,result,overtime,points\n"
-csv_string = ""
+def scrape():
+    csv_header = "games_played,team_name,opp_name,result,overtime,points\n"
+    csv_string = ""
 
-for link in url:
-    request = requests.get(link)
+    for link in URL:
+        request = requests.get(link)
 
-    if request.status_code != 200:
-        print("Connection Failed -> " + link)
-        continue
-    
-    points = 0
+        if request.status_code != 200:
+            print("Connection Failed -> " + link)
+            continue
+        
+        points = 0
 
-    page = request.text
-    page = bs(page, "html.parser")
+        page = request.text
+        page = bs(page, "html.parser")
 
-    team_name = page.find("h1", {"itemprop": "name"}).span.find_next().text
+        team_name = page.find("h1", {"itemprop": "name"}).span.find_next().text
 
-    game_results = page.find_all("td", {"data-stat": "game_result"})
-    teams = page.find_all("td", {"data-stat": "opp_name"})
-    overtimes = np.array(page.find_all("td", {"data-stat": "overtimes"}))
-    
-    for i, (team, game_result, overtime) in enumerate(zip(teams, game_results, overtimes)):
-        if (overtime.text != "") == True and game_result.text == "L":
-            points += 1
-        elif game_result.text == "W":
-            points += 2
+        game_results = page.find_all("td", {"data-stat": "game_result"})
+        teams = page.find_all("td", {"data-stat": "opp_name"})
+        overtimes = np.array(page.find_all("td", {"data-stat": "overtimes"}))
+        
+        for i, (team, game_result, overtime) in enumerate(zip(teams, game_results, overtimes)):
+            if (overtime.text != "") == True and game_result.text == "L":
+                points += 1
+            elif game_result.text == "W":
+                points += 2
 
-        csv_string += str(i + 1) + "," + team_name + "," + team.text + "," \
-                    + game_result.text + "," + overtime.text + "," + str(points) + "\n"
+            csv_string += str(i + 1) + "," + team_name + "," + team.text + "," \
+                        + game_result.text + "," + overtime.text + "," + str(points) + "\n"
 
 
-file.write(csv_header + csv_string)
+    FILE.write(csv_header + csv_string)
 
-file.close()
+scrape()
+FILE.close()

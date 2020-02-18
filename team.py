@@ -1,4 +1,4 @@
-class NbaTeam():
+class Team():
 
     def __init__(self):
         self.gp = 0

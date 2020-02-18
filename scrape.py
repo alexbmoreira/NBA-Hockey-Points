@@ -36,6 +36,8 @@ url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        ]
 
 file = open("hockey_points.csv", "w")
+csv_header = "games_played,team_name,opp_name,result,overtime,points\n"
+csv_string = ""
 
 for link in url:
     request = requests.get(link)
@@ -44,7 +46,6 @@ for link in url:
         print("Connection Failed -> " + link)
         continue
     
-    csv_string = "games_played,team_name,opp_name,result,overtime,points\n"
     points = 0
 
     page = request.text
@@ -65,6 +66,7 @@ for link in url:
         csv_string += str(i + 1) + "," + team_name + "," + teams[i].text + "," \
                     + game_results[i].text + "," + overtime[i].text + "," + str(points) + "\n"
 
-    file.write(csv_string)
+
+file.write(csv_header + csv_string)
 
 file.close()

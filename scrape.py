@@ -44,7 +44,7 @@ for link in url:
         print("Connection Failed -> " + link)
         continue
     
-    csv_string = ""
+    csv_string = "games_played,team_name,opp_name,result,overtime,points\n"
     points = 0
 
     page = request.text
@@ -62,8 +62,8 @@ for link in url:
         elif game_results[i].text == "W":
             points += 2
 
-        csv_string += team_name + "," + teams[i].text + "," + game_results[i].text + "," \
-                    + overtime[i].text + "," + str(points) + "\n"
+        csv_string += str(i) + "," + team_name + "," + teams[i].text + "," \
+                    + game_results[i].text + "," + overtime[i].text + "," + str(points) + "\n"
 
     file.write(csv_string)
 

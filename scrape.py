@@ -1,7 +1,6 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import numpy as np
-import json
 
 url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
@@ -55,16 +54,16 @@ for link in url:
 
     game_results = page.find_all("td", {"data-stat": "game_result"})
     teams = page.find_all("td", {"data-stat": "opp_name"})
-    overtime = np.array(page.find_all("td", {"data-stat": "overtimes"}))
+    overtimes = np.array(page.find_all("td", {"data-stat": "overtimes"}))
     
-    for i in range(len(teams)):
-        if (overtime[i].text != "") == True and game_results[i].text == "L":
+    for i, (team, game_result, overtime) in enumerate(zip(teams, game_results, overtimes)):
+        if (overtime.text != "") == True and game_result.text == "L":
             points += 1
-        elif game_results[i].text == "W":
+        elif game_result.text == "W":
             points += 2
 
-        csv_string += str(i + 1) + "," + team_name + "," + teams[i].text + "," \
-                    + game_results[i].text + "," + overtime[i].text + "," + str(points) + "\n"
+        csv_string += str(i + 1) + "," + team_name + "," + team.text + "," \
+                    + game_result.text + "," + overtime.text + "," + str(points) + "\n"
 
 
 file.write(csv_header + csv_string)

@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup as bs
 import numpy as np
-from team import NbaTeam
+from team import Team
 
 URL = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
        "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
@@ -56,10 +56,9 @@ def scrape():
         team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
         
         game_results = page.find_all("td", {"data-stat": "game_result"})
-        teams = page.find_all("td", {"data-stat": "opp_name"})
         overtimes = page.find_all("td", {"data-stat": "overtimes"})
         
-        for i, (team, game_result, overtime) in enumerate(zip(teams, game_results, overtimes)):
+        for i, (game_result, overtime) in enumerate(zip(game_results, overtimes)):
             if game_result.text != "":
                 team.gp += 1
             
@@ -75,7 +74,7 @@ def scrape():
                 if overtime.text == "":
                     team.reg_wins += 1
 
-            points_csv_string += str(team) + "\n"
+        points_csv_string += str(team) + "\n"
 
     FILE.write(points_csv_header + points_csv_string)
 

@@ -11,7 +11,7 @@ class Team():
     
     def __str__(self):
         arr = [self.gp, self.name, self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
-        return ",".join(arr)
+        return ",".join(str(item) for item in arr)
 
     def calc_points(self):
         return self.wins * 2 + self.ot_losses

@@ -10,15 +10,15 @@ class Team():
         self.reg_wins = 0
     
     def __str__(self):
-        gp = str(self.gp).rjust(2, ' ')
-        name = self.name.rjust(25, ' ')
-        wins = str(self.wins).rjust(2, ' ')
-        losses = str(self.losses).rjust(2, ' ')
-        ot_losses = str(self.ot_losses).rjust(2, ' ')
-        points = str(self.points).rjust(3, ' ')
-        reg_wins = str(self.reg_wins).rjust(2, ' ')
+        #gp = str(self.gp).rjust(2, ' ')
+        #name = ("'" + self.name + "'").rjust(25, ' ')
+        #wins = str(self.wins).rjust(2, ' ')
+        #losses = str(self.losses).rjust(2, ' ')
+        #ot_losses = str(self.ot_losses).rjust(2, ' ')
+        #points = str(self.points).rjust(3, ' ')
+        #reg_wins = str(self.reg_wins).rjust(2, ' ')
 
-        arr = [gp, name, wins, losses, ot_losses, points, reg_wins]
+        arr = [self.gp, '"' + self.name + '"', self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
         return ",".join(str(item) for item in arr)
 
     def calc_points(self):

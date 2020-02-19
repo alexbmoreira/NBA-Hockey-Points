@@ -91,15 +91,11 @@ if __name__ == "__main__":
     nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
                  "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
                  "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
-    nba_url = []
-    for code in nba_codes:
-        nba_url.append(f"https://www.basketball-reference.com/teams/{code}/2020_games.html")
+    nba_url = [f"https://www.basketball-reference.com/teams/{code}/2020_games.html" for code in nba_codes]
     nhl_codes = ["ANA", "ARI", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", \
                  "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
                  "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
-    nhl_url = []
-    for code in nhl_codes:
-        nhl_url.append(f"https://www.hockey-reference.com/teams/{code}/2020_games.html")
+    nhl_url = [f"https://www.hockey-reference.com/teams/{code}/2020_games.html" for code in nhl_codes]
 
     file = open("hockey_points.csv", "w")
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"

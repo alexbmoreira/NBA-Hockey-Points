@@ -99,7 +99,7 @@ if __name__ == "__main__":
                  "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
     nhl_url = []
     for code in nhl_codes:
-        nba_url.append(f"https://www.hockey-reference.com/teams/{code}/2020_games.html")
+        nhl_url.append(f"https://www.hockey-reference.com/teams/{code}/2020_games.html")
 
     file = open("hockey_points.csv", "w")
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"

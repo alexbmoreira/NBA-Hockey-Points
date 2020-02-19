@@ -11,7 +11,7 @@ class Team():
     
     def __str__(self):
         gp = str(self.gp).rjust(2, ' ')
-        name = self.name.rjust(50, ' ')
+        name = self.name.rjust(25, ' ')
         wins = str(self.wins).rjust(2, ' ')
         losses = str(self.losses).rjust(2, ' ')
         ot_losses = str(self.ot_losses).rjust(2, ' ')

@@ -185,6 +185,7 @@ dmypy.json
 
 # exported csv
 *.csv
+main_gui.py
 
     © 2020 GitHub, Inc.
     Terms

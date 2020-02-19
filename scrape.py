@@ -3,46 +3,12 @@ from bs4 import BeautifulSoup as bs
 import numpy as np
 from team import Team
 
-URL = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
-       "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
-       "https://www.basketball-reference.com/teams/BRK/2020_games.html", \
-       "https://www.basketball-reference.com/teams/CHO/2020_games.html", \
-       "https://www.basketball-reference.com/teams/CHI/2020_games.html", \
-       "https://www.basketball-reference.com/teams/CLE/2020_games.html", \
-       "https://www.basketball-reference.com/teams/DAL/2020_games.html", \
-       "https://www.basketball-reference.com/teams/DEN/2020_games.html", \
-       "https://www.basketball-reference.com/teams/DET/2020_games.html", \
-       "https://www.basketball-reference.com/teams/GSW/2020_games.html", \
-       "https://www.basketball-reference.com/teams/HOU/2020_games.html", \
-       "https://www.basketball-reference.com/teams/IND/2020_games.html", \
-       "https://www.basketball-reference.com/teams/LAC/2020_games.html", \
-       "https://www.basketball-reference.com/teams/LAL/2020_games.html", \
-       "https://www.basketball-reference.com/teams/MEM/2020_games.html", \
-       "https://www.basketball-reference.com/teams/MIA/2020_games.html", \
-       "https://www.basketball-reference.com/teams/MIL/2020_games.html", \
-       "https://www.basketball-reference.com/teams/MIN/2020_games.html", \
-       "https://www.basketball-reference.com/teams/NOP/2020_games.html", \
-       "https://www.basketball-reference.com/teams/NYK/2020_games.html", \
-       "https://www.basketball-reference.com/teams/OKC/2020_games.html", \
-       "https://www.basketball-reference.com/teams/ORL/2020_games.html", \
-       "https://www.basketball-reference.com/teams/PHI/2020_games.html", \
-       "https://www.basketball-reference.com/teams/PHO/2020_games.html", \
-       "https://www.basketball-reference.com/teams/POR/2020_games.html", \
-       "https://www.basketball-reference.com/teams/SAC/2020_games.html", \
-       "https://www.basketball-reference.com/teams/SAS/2020_games.html", \
-       "https://www.basketball-reference.com/teams/TOR/2020_games.html", \
-       "https://www.basketball-reference.com/teams/UTA/2020_games.html", \
-       "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
-       ]
-
-FILE = open("hockey_points.csv", "w")
-
-def scrape():
+def scrape(url, file):
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"
     points_csv_string = ""
     teams = []
 
-    for link in URL:
+    for link in url:
         request = requests.get(link)
 
         if request.status_code != 200:
@@ -76,6 +42,39 @@ def scrape():
 
         points_csv_string += str(team) + "\n"
 
-    FILE.write(points_csv_header + points_csv_string)
+    file.write(points_csv_header + points_csv_string)
 
-scrape()
+if __name__ == "__main__":
+    url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
+       "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
+       "https://www.basketball-reference.com/teams/BRK/2020_games.html", \
+       "https://www.basketball-reference.com/teams/CHO/2020_games.html", \
+       "https://www.basketball-reference.com/teams/CHI/2020_games.html", \
+       "https://www.basketball-reference.com/teams/CLE/2020_games.html", \
+       "https://www.basketball-reference.com/teams/DAL/2020_games.html", \
+       "https://www.basketball-reference.com/teams/DEN/2020_games.html", \
+       "https://www.basketball-reference.com/teams/DET/2020_games.html", \
+       "https://www.basketball-reference.com/teams/GSW/2020_games.html", \
+       "https://www.basketball-reference.com/teams/HOU/2020_games.html", \
+       "https://www.basketball-reference.com/teams/IND/2020_games.html", \
+       "https://www.basketball-reference.com/teams/LAC/2020_games.html", \
+       "https://www.basketball-reference.com/teams/LAL/2020_games.html", \
+       "https://www.basketball-reference.com/teams/MEM/2020_games.html", \
+       "https://www.basketball-reference.com/teams/MIA/2020_games.html", \
+       "https://www.basketball-reference.com/teams/MIL/2020_games.html", \
+       "https://www.basketball-reference.com/teams/MIN/2020_games.html", \
+       "https://www.basketball-reference.com/teams/NOP/2020_games.html", \
+       "https://www.basketball-reference.com/teams/NYK/2020_games.html", \
+       "https://www.basketball-reference.com/teams/OKC/2020_games.html", \
+       "https://www.basketball-reference.com/teams/ORL/2020_games.html", \
+       "https://www.basketball-reference.com/teams/PHI/2020_games.html", \
+       "https://www.basketball-reference.com/teams/PHO/2020_games.html", \
+       "https://www.basketball-reference.com/teams/POR/2020_games.html", \
+       "https://www.basketball-reference.com/teams/SAC/2020_games.html", \
+       "https://www.basketball-reference.com/teams/SAS/2020_games.html", \
+       "https://www.basketball-reference.com/teams/TOR/2020_games.html", \
+       "https://www.basketball-reference.com/teams/UTA/2020_games.html", \
+       "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
+       ]
+    file = open("hockey_points.csv", "w")
+    scrape(url, file)

@@ -2,8 +2,9 @@ import requests
 from bs4 import BeautifulSoup as bs
 import numpy as np
 from team import Team
+from operator import attrgetter
 
-def scrape(url, file):
+def scrape(url):
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"
     points_csv_string = ""
     teams = []
@@ -40,9 +41,23 @@ def scrape(url, file):
                 if overtime.text == "":
                     team.reg_wins += 1
 
-        points_csv_string += str(team) + "\n"
+        teams.append(team)
 
-    file.write(points_csv_header + points_csv_string)
+    return teams
+
+def compare(team_a, team_b):
+    if team_a.points != team_b.points:
+        return team_a.points - team_b.points
+    else:
+        if team_a.gp != team_b.gp:
+            return team_b.gp - team_a.gp
+        else:
+            return team_a.reg_wins - team_b.reg_wins
+
+def sort(teams):
+    s = sorted(teams, key = attrgetter("points"), reverse = True)
+    s = sorted(s, key = attrgetter("gp"))
+    return sorted(s, key = attrgetter("reg_wins"), reverse = True)
 
 if __name__ == "__main__":
     url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
@@ -77,4 +92,9 @@ if __name__ == "__main__":
        "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
        ]
     file = open("hockey_points.csv", "w")
-    scrape(url, file)
+    string = ""
+    teams = sort(scrape(url))
+    for team in teams:
+        string += str(team) + "\n"
+    file.write(string)
+    file.close()

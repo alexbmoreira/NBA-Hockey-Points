@@ -43,15 +43,6 @@ def scrape(url):
 
     return teams
 
-def compare(team_a, team_b):
-    if team_a.points != team_b.points:
-        return team_a.points - team_b.points
-    else:
-        if team_a.gp != team_b.gp:
-            return team_b.gp - team_a.gp
-        else:
-            return team_a.reg_wins - team_b.reg_wins
-
 def sort(teams):
     s = sorted(teams, key = attrgetter("reg_wins"), reverse = True)
     s = sorted(s, key = attrgetter("gp"))

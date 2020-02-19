@@ -89,7 +89,7 @@ def sort(teams):
 
 if __name__ == "__main__":
     nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
-                 "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \ 
+                 "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
                  "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
     nba_url = []
     for code in nba_codes:
@@ -100,7 +100,7 @@ if __name__ == "__main__":
     nhl_url = []
     for code in nhl_codes:
         nba_url.append(f"https://www.hockey-reference.com/teams/{code}/2020_games.html")
-        
+
     file = open("hockey_points.csv", "w")
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"
     points_csv_string = ""

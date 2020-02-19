@@ -7,9 +7,9 @@ def get_data():
 
     #print(my_data)
     #print(my_data["team name"])
-    #print(my_data.loc["0":, "points"])
+    print(my_data.loc["0":, ["team name", "points"]])
 
-    print(my_data["points"]["93"])
+    #print(type(my_data["points"].loc["0"]))
 
     #fig = plt.figure()
     #axes = fig.add_axes([0.1, 0.1, 0.8, 0.8])

@@ -1,4 +1,4 @@
-Hockey Points in the NBA
+Hockey Points in the NBA :ice_hockey: :basketball:
 ========================
 
 How would the NBA look if points were given out the same way they were in the NHL?

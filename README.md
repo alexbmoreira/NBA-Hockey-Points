@@ -18,3 +18,7 @@ This file is already sorted based on NHL points tie-breakers.
 Why?
 ----
 This was made to practice coding in Python, build a small web scraper, and take data that I could do something fun with, even if it is really simple. Hopefully soon I'll have time to present it as someting nicer than writing to a `.csv` file.
+
+Current Standings (Probably not up to date):
+--------------------------------------------
+![alt text](https://ibb.co/bHV265T) "NBA + NHL Combined Standings")

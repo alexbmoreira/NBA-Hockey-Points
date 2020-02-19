@@ -88,69 +88,19 @@ def sort(teams):
     return sorted(s, key = attrgetter("points"), reverse = True)
 
 if __name__ == "__main__":
-    nba_url = ["https://www.basketball-reference.com/teams/ATL/2020_games.html", \
-               "https://www.basketball-reference.com/teams/BOS/2020_games.html", \
-               "https://www.basketball-reference.com/teams/BRK/2020_games.html", \
-               "https://www.basketball-reference.com/teams/CHO/2020_games.html", \
-               "https://www.basketball-reference.com/teams/CHI/2020_games.html", \
-               "https://www.basketball-reference.com/teams/CLE/2020_games.html", \
-               "https://www.basketball-reference.com/teams/DAL/2020_games.html", \
-               "https://www.basketball-reference.com/teams/DEN/2020_games.html", \
-               "https://www.basketball-reference.com/teams/DET/2020_games.html", \
-               "https://www.basketball-reference.com/teams/GSW/2020_games.html", \
-               "https://www.basketball-reference.com/teams/HOU/2020_games.html", \
-               "https://www.basketball-reference.com/teams/IND/2020_games.html", \
-               "https://www.basketball-reference.com/teams/LAC/2020_games.html", \
-               "https://www.basketball-reference.com/teams/LAL/2020_games.html", \
-               "https://www.basketball-reference.com/teams/MEM/2020_games.html", \
-               "https://www.basketball-reference.com/teams/MIA/2020_games.html", \
-               "https://www.basketball-reference.com/teams/MIL/2020_games.html", \
-               "https://www.basketball-reference.com/teams/MIN/2020_games.html", \
-               "https://www.basketball-reference.com/teams/NOP/2020_games.html", \
-               "https://www.basketball-reference.com/teams/NYK/2020_games.html", \
-               "https://www.basketball-reference.com/teams/OKC/2020_games.html", \
-               "https://www.basketball-reference.com/teams/ORL/2020_games.html", \
-               "https://www.basketball-reference.com/teams/PHI/2020_games.html", \
-               "https://www.basketball-reference.com/teams/PHO/2020_games.html", \
-               "https://www.basketball-reference.com/teams/POR/2020_games.html", \
-               "https://www.basketball-reference.com/teams/SAC/2020_games.html", \
-               "https://www.basketball-reference.com/teams/SAS/2020_games.html", \
-               "https://www.basketball-reference.com/teams/TOR/2020_games.html", \
-               "https://www.basketball-reference.com/teams/UTA/2020_games.html", \
-               "https://www.basketball-reference.com/teams/WAS/2020_games.html", \
-               ]
-    nhl_url = ["https://www.hockey-reference.com/teams/ANA/2020_games.html", \
-               "https://www.hockey-reference.com/teams/ARI/2020_games.html", \
-               "https://www.hockey-reference.com/teams/BOS/2020_games.html", \
-               "https://www.hockey-reference.com/teams/BUF/2020_games.html", \
-               "https://www.hockey-reference.com/teams/CGY/2020_games.html", \
-               "https://www.hockey-reference.com/teams/CAR/2020_games.html", \
-               "https://www.hockey-reference.com/teams/CHI/2020_games.html", \
-               "https://www.hockey-reference.com/teams/COL/2020_games.html", \
-               "https://www.hockey-reference.com/teams/CBJ/2020_games.html", \
-               "https://www.hockey-reference.com/teams/DAL/2020_games.html", \
-               "https://www.hockey-reference.com/teams/DET/2020_games.html", \
-               "https://www.hockey-reference.com/teams/EDM/2020_games.html", \
-               "https://www.hockey-reference.com/teams/FLA/2020_games.html", \
-               "https://www.hockey-reference.com/teams/LAK/2020_games.html", \
-               "https://www.hockey-reference.com/teams/MIN/2020_games.html", \
-               "https://www.hockey-reference.com/teams/MTL/2020_games.html", \
-               "https://www.hockey-reference.com/teams/NSH/2020_games.html", \
-               "https://www.hockey-reference.com/teams/NJD/2020_games.html", \
-               "https://www.hockey-reference.com/teams/NYI/2020_games.html", \
-               "https://www.hockey-reference.com/teams/NYR/2020_games.html", \
-               "https://www.hockey-reference.com/teams/OTT/2020_games.html", \
-               "https://www.hockey-reference.com/teams/PHI/2020_games.html", \
-               "https://www.hockey-reference.com/teams/PIT/2020_games.html", \
-               "https://www.hockey-reference.com/teams/SJS/2020_games.html", \
-               "https://www.hockey-reference.com/teams/STL/2020_games.html", \
-               "https://www.hockey-reference.com/teams/TBL/2020_games.html", \
-               "https://www.hockey-reference.com/teams/TOR/2020_games.html", \
-               "https://www.hockey-reference.com/teams/VAN/2020_games.html", \
-               "https://www.hockey-reference.com/teams/VEG/2020_games.html", \
-               "https://www.hockey-reference.com/teams/WSH/2020_games.html", \
-               "https://www.hockey-reference.com/teams/WPG/2020_games.html", \
-               ]
+    nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
+                 "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \ 
+                 "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    nba_url = []
+    for code in nba_codes:
+        nba_url.append(f"https://www.basketball-reference.com/teams/{code}/2020_games.html")
+    nhl_codes = ["ANA", "ARI", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", \
+                 "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
+                 "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
+    nhl_url = []
+    for code in nhl_codes:
+        nba_url.append(f"https://www.hockey-reference.com/teams/{code}/2020_games.html")
+        
     file = open("hockey_points.csv", "w")
     points_csv_header = "gp, team name, wins, losses, ot_losses, points, reg_wins\n"
     points_csv_string = ""

@@ -21,4 +21,4 @@ This was made to practice coding in Python, build a small web scraper, and take 
 
 Current Standings (Probably not up to date):
 --------------------------------------------
-![alt text](https://ibb.co/bHV265T) "NBA + NHL Combined Standings"
+![alt text](https://ibb.co/bHV265T "NBA + NHL Combined Standings")

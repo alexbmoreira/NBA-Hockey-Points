@@ -17,8 +17,8 @@ def nba_scrape(url):
         page = bs(page, "html.parser")
 
         team = Team()
-        #team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
-        team.name = link[43:46]
+        team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
+        #team.name = link[43:46]
         
         game_results = page.find_all("td", {"data-stat": "game_result"})
         overtimes = page.find_all("td", {"data-stat": "overtimes"})
@@ -57,8 +57,8 @@ def nhl_scrape(url):
         page = bs(page, "html.parser")
 
         team = Team()
-        #team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
-        team.name = link[39:42]
+        team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
+        #team.name = link[39:42]
         
         game_results = page.find_all("td", {"data-stat": "game_outcome"})
         overtimes = page.find_all("td", {"data-stat": "overtimes"})

@@ -84,7 +84,11 @@ def nhl_scrape(url):
 def sort(teams):
     s = sorted(teams, key = attrgetter("reg_wins"), reverse = True)
     s = sorted(s, key = attrgetter("gp"))
-    return sorted(s, key = attrgetter("points"), reverse = True)
+    s = sorted(s, key = attrgetter("points"), reverse = True)
+    for i, team in enumerate(s):
+        team.standing = i + 1
+
+    return s
 
 if __name__ == "__main__":
     nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
@@ -97,7 +101,7 @@ if __name__ == "__main__":
     nhl_url = [f"https://www.hockey-reference.com/teams/{code}/2020_games.html" for code in nhl_codes]
 
     file = open("hockey_points.csv", "w")
-    points_csv_header = "gp,team name,wins,losses,ot_losses,points,reg_wins\n"
+    points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins\n"
     points_csv_string = ""
 
     teams = nhl_scrape(nhl_url)

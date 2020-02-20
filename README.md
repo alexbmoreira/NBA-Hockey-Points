@@ -11,6 +11,7 @@ This script will scrape data from [basketball-reference.com](https://www.basketb
 How to run:
 -----------
 
+Using Python 3:
 `>>> python scrape.py` will write to a `.csv` called `hockey_points.csv`
 
 This file is already sorted based on NHL points tie-breakers.

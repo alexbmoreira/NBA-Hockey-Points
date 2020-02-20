@@ -1,8 +1,9 @@
 class Team():
 
     def __init__(self):
-        self.gp = 0
+        self.standing = 0
         self.name = ""
+        self.gp = 0
         self.wins = 0
         self.losses = 0
         self.ot_losses = 0
@@ -18,7 +19,7 @@ class Team():
         #points = str(self.points).rjust(3, ' ')
         #reg_wins = str(self.reg_wins).rjust(2, ' ')
 
-        arr = [self.gp, '"' + self.name + '"', self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
+        arr = [self.standing, '"' + self.name + '"', self.gp, self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
         return ",".join(str(item) for item in arr)
 
     def calc_points(self):

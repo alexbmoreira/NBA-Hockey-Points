@@ -9,7 +9,7 @@ def get_data_pd():
 
     my_range = list(range(1, len(my_data.index) + 1))
 
-    fig, ax = plt.subplots(figsize=(5,5))
+    fig, ax = plt.subplots(figsize=(6,6))
     plt.hlines(y=my_range, xmin=0, xmax=my_data["points"], color='#007ACC', alpha=0.2, linewidth=1)
     plt.plot(my_data["points"], my_range, "o", markersize=3, color='#007ACC', alpha=0.6)
 
@@ -19,7 +19,7 @@ def get_data_pd():
     ax.set_title("NBA + NHL Combined Standings", fontsize=15, fontweight='black', color = '#333F4B')
 
     plt.yticks(my_range, my_data["team name"], fontsize=3)
-    plt.xticks(list(range(0, 101, 5)), fontsize=3)
+    plt.xticks(list(range(0, 101, 5)), fontsize=5)
 
     ax.spines['top'].set_color('none')
     ax.spines['right'].set_color('none')

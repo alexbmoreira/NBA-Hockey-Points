@@ -16,6 +16,7 @@ def get_data_pd():
     ax.spines['left'].set_position(('data', 0.015))
     ax.set_xlabel("Points", fontsize=15, fontweight='black', color = '#333F4B')
     ax.set_ylabel("Team", fontsize=15, fontweight='black', color = '#333F4B')
+    ax.set_title("NBA + NHL Combined Standings")
 
     plt.yticks(my_range, my_data["team name"], fontsize=3)
     plt.xticks(list(range(0, 101, 5)), fontsize=3)

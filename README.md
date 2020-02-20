@@ -12,9 +12,11 @@ How to run:
 -----------
 
 Using Python 3:
-`>>> python scrape.py` will write to a `.csv` called `hockey_points.csv`
+`> python scrape.py` will write to a `.csv` called `hockey_points.csv`
 
 This file is already sorted based on NHL points tie-breakers.
+
+Once you have the `.csv` run `> python plotter.py` to output the lollipop plot of the standings
 
 Why?
 ----

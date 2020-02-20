@@ -28,6 +28,7 @@ def get_data_pd():
     #print(standings)
     plt.gca().invert_yaxis()
     plt.tight_layout()
+    plt.savefig('standings.png', dpi=300, bbox_inches='tight')
     plt.show()
 
 def get_data_np():

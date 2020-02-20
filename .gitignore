@@ -183,9 +183,9 @@ dmypy.json
 # pytype static type analyzer
 .pytype/
 
-# exported csv
+# exported files
 *.csv
-main_gui.py
+*.png
 
     © 2020 GitHub, Inc.
     Terms

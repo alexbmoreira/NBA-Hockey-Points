@@ -13,6 +13,7 @@ def get_data_pd():
     plt.hlines(y=my_range, xmin=0, xmax=my_data["points"], color='#007ACC', alpha=0.2, linewidth=1)
     plt.plot(my_data["points"], my_range, "o", markersize=3, color='#007ACC', alpha=0.6)
 
+    ax.spines['left'].set_position(('data', 0.015))
     ax.set_xlabel("Points", fontsize=15, fontweight='black', color = '#333F4B')
     ax.set_ylabel("Team", fontsize=15, fontweight='black', color = '#333F4B')
 

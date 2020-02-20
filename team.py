@@ -19,7 +19,7 @@ class Team():
         #points = str(self.points).rjust(3, ' ')
         #reg_wins = str(self.reg_wins).rjust(2, ' ')
 
-        arr = [self.standing, '"' + self.name + '"', self.gp, self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
+        arr = [self.standing, self.name, self.gp, self.wins, self.losses, self.ot_losses, self.points, self.reg_wins]
         return ",".join(str(item) for item in arr)
 
     def calc_points(self):

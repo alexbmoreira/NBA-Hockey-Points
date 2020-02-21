@@ -4,8 +4,7 @@ import pandas as pd
 import scrape
 
 def graph_data():
-    my_data = pd.read_csv("hockey_points.csv", index_col="rank")
-    my_data = my_data.sort_values("rank", ascending=False)
+    my_data = pd.read_csv("hockey_points.csv", index_col="rank").sort_values("rank", ascending=False)
     my_range = list(range(1, len(my_data.index) + 1))
 
     fig, ax = plt.subplots(figsize=(4.5,4.5))

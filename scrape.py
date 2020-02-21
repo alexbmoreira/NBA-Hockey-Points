@@ -43,6 +43,7 @@ def nba_scrape(url):
 
     return teams
 
+
 def nhl_scrape(url):
     teams = []
 
@@ -83,6 +84,38 @@ def nhl_scrape(url):
 
     return teams
 
+# def nhl_scrape(url):
+#     teams = []
+
+#     request = requests.get(link)
+
+#     if request.status_code != 200:
+#         print("Connection Failed -> " + link)
+#         continue
+
+#     page = request.text
+#     page = bs(page, "html.parser")
+#     table = page.find("div", {"id": "all_stats"})
+#     table = table.find("tbody")
+#     rows = table.find_all("tr")
+
+#     for row in rows:
+#         team = Team()
+
+#         team.name = row.find("td", {"data-stat": "team_name"}).text
+#         team.gp = row.find("td", {"data-stat": "games"}).text
+#         team.wins = row.find("td", {"data-stat": "wins"}).text
+#         team.losses = row.find("td", {"data-stat": "losses"}).text
+#         team.ot_losses = row.find("td", {"data-stat": "losses_ot"}).text
+#         team.points = row.find("td", {"data-stat": "points"}).text
+#         team.reg_wins = 0
+
+#     return teams
+
+def points_per(teams):
+    for team in teams:
+        team.points_per_game()
+
 def sort(teams):
     s = sorted(teams, key = attrgetter("reg_wins"), reverse = True)
     s = sorted(s, key = attrgetter("gp"))
@@ -101,13 +134,15 @@ if __name__ == "__main__":
                  "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
                  "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
     nhl_url = [f"https://www.hockey-reference.com/teams/{code}/2020_games.html" for code in nhl_codes]
+    #nhl_url = "https://www.hockey-reference.com/leagues/NHL_2020.html"
 
     file = open("hockey_points.csv", "w")
-    points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins\n"
+    points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins,ppg\n"
     points_csv_string = ""
 
     teams = nhl_scrape(nhl_url)
     teams.extend(nba_scrape(nba_url))
+    points_per(teams)
     teams = sort(teams)
     for team in teams:
         points_csv_string += str(team) + "\n"

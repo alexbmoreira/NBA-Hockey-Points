@@ -128,14 +128,15 @@ def sort(teams):
     return s
 
 if __name__ == "__main__":
+    year = "2019"
     nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
                  "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
                  "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
-    nba_url = [f"https://www.basketball-reference.com/teams/{code}/2020_games.html" for code in nba_codes]
+    nba_url = [f"https://www.basketball-reference.com/teams/{code}/{year}_games.html" for code in nba_codes]
     nhl_codes = ["ANA", "ARI", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", \
                  "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
                  "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
-    nhl_url = [f"https://www.hockey-reference.com/teams/{code}/2020_games.html" for code in nhl_codes]
+    nhl_url = [f"https://www.hockey-reference.com/teams/{code}/{year}_games.html" for code in nhl_codes]
     #nhl_url = "https://www.hockey-reference.com/leagues/NHL_2020.html"
 
     file = open("hockey_points.csv", "w")

@@ -21,8 +21,9 @@ def nba_scrape(url):
         team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
         #team.name = link[43:46]
         
-        game_results = page.find_all("td", {"data-stat": "game_result"})
-        overtimes = page.find_all("td", {"data-stat": "overtimes"})
+        season_table = page.find("table", {"id": "games"})
+        game_results = season_table.find_all("td", {"data-stat": "game_result"})
+        overtimes = season_table.find_all("td", {"data-stat": "overtimes"})
         
         for i, (game_result, overtime) in enumerate(zip(game_results, overtimes)):
             if game_result.text != "":
@@ -63,8 +64,9 @@ def nhl_scrape(url):
         team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
         #team.name = link[39:42]
         
-        game_results = page.find_all("td", {"data-stat": "game_outcome"})
-        overtimes = page.find_all("td", {"data-stat": "overtimes"})
+        season_table = page.find("table", {"id": "games"})
+        game_results = season_table.find_all("td", {"data-stat": "game_outcome"})
+        overtimes = season_table.find_all("td", {"data-stat": "overtimes"})
         
         for i, (game_result, overtime) in enumerate(zip(game_results, overtimes)):
             if game_result.text != "":

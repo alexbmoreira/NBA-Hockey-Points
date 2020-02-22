@@ -10,6 +10,7 @@ class Team():
         self.points = 0
         self.reg_wins = 0
         self.ppg = 0
+        self.league = ""
     
     def __str__(self):
         #gp = str(self.gp).rjust(2, ' ')
@@ -20,7 +21,8 @@ class Team():
         #points = str(self.points).rjust(3, ' ')
         #reg_wins = str(self.reg_wins).rjust(2, ' ')
 
-        arr = [self.standing, self.name, self.gp, self.wins, self.losses, self.ot_losses, self.points, self.reg_wins, self.ppg]
+        arr = [self.standing, self.name, self.gp, self.wins, self.losses, \
+               self.ot_losses, self.points, self.reg_wins, self.ppg, self.league]
         return ",".join(str(item) for item in arr)
 
     def points_per_game(self):

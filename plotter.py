@@ -8,11 +8,13 @@ import scrape
 def graph_data():
     my_data = pd.read_csv("hockey_points.csv", index_col="rank").sort_values("rank", ascending=False)
     ppg_data = my_data.sort_values("ppg", ascending=True)
+    nhl_ppg = ppg_data["league"] == "NHL"
+    nba_ppg = ppg_data["league"] == "NBA"
     my_range = list(range(1, len(my_data.index) + 1))
 
     fig, ((ax_st, ax_ppg), (std_nba, std_nhl)) = plt.subplots(nrows=2, ncols=2, figsize=(9,7.5), gridspec_kw={'height_ratios': [3, 1]})
 
-    
+
 
     axes_st(ax_st, my_data, my_range)
 

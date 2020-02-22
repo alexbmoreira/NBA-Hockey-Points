@@ -24,8 +24,8 @@ This was made to practice coding in Python, build a small web scraper, and take 
 
 Last Year's Standings:
 ----------------------
-![2019 Standings](https://i.ibb.co/TRrtj1F/standings.png "NBA + NHL Combined 2019 Standings")
+![2019 Standings](https://ibb.co/NrYzfHX/standings-ppg.png "NBA + NHL Combined 2019 Standings")
 
 This Year's Standings by PPG (Probably not up to date):
 -------------------------------------------------------
-![2020 Standings](https://i.ibb.co/TRrtj1F/standings.png "NBA + NHL Combined 2020 Standings")
+![2020 Standings](https://ibb.co/cL6rBP9/standings-points.png "NBA + NHL Combined 2020 Standings")

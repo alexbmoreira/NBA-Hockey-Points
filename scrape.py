@@ -165,9 +165,7 @@ def get_nhl_links(year):
 
     return links
 
-
-if __name__ == "__main__":
-    year = get_year()
+def write_file():
     print("Running...")
     nba_url = get_nba_links(year)
     nhl_url = get_nhl_links(year)
@@ -192,3 +190,8 @@ if __name__ == "__main__":
         points_csv_string += str(team) + "\n"
     file.write(points_csv_header + points_csv_string)
     file.close()
+
+
+if __name__ == "__main__":
+    year = get_year()
+    write_file(year)

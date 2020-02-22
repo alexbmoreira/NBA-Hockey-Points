@@ -8,8 +8,7 @@ import scrape
 def graph_data():
     my_data = pd.read_csv("hockey_points.csv", index_col="rank").sort_values("rank", ascending=False)
     ppg_data = my_data.sort_values("ppg", ascending=True)
-    #nhl_ppg = ppg_data["league"] == "NHL"
-    #nba_ppg = ppg_data["league"] == "NBA"
+    
     my_range = list(range(1, len(my_data.index) + 1))
 
     fig, ax_st = plt.subplots(figsize=(5, 5))
@@ -21,6 +20,7 @@ def graph_data():
     plt.show()
 
 def axes_ppg(axes, data, my_range):
+
     axes.set_xlabel("Points per Game", fontsize=9, fontweight='black', color = '#333F4B')
     axes.set_ylabel("Team", fontsize=9, fontweight='black', color = '#333F4B')
     axes.set_title("NBA + NHL Standings (by PPG)", fontsize=11, fontweight='black', color = '#333F4B')
@@ -55,5 +55,6 @@ def axes_st(axes, data, my_range):
     plt.xticks(list(range(0, data["points"].max() + 5, 5)), fontsize=5, rotation=45)
     plt.tight_layout()
     plt.savefig('standings_points.png', dpi=300, bbox_inches='tight')
-    
+
+
 graph_data()

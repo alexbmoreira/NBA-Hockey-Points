@@ -45,7 +45,6 @@ def nba_scrape(url):
 
     return teams
 
-
 def nhl_scrape(url):
     teams = []
 
@@ -88,34 +87,6 @@ def nhl_scrape(url):
 
     return teams
 
-# def nhl_scrape(url):
-#     teams = []
-
-#     request = requests.get(link)
-
-#     if request.status_code != 200:
-#         print("Connection Failed -> " + link)
-#         continue
-
-#     page = request.text
-#     page = bs(page, "html.parser")
-#     table = page.find("div", {"id": "all_stats"})
-#     table = table.find("tbody")
-#     rows = table.find_all("tr")
-
-#     for row in rows:
-#         team = Team()
-
-#         team.name = row.find("td", {"data-stat": "team_name"}).text
-#         team.gp = row.find("td", {"data-stat": "games"}).text
-#         team.wins = row.find("td", {"data-stat": "wins"}).text
-#         team.losses = row.find("td", {"data-stat": "losses"}).text
-#         team.ot_losses = row.find("td", {"data-stat": "losses_ot"}).text
-#         team.points = row.find("td", {"data-stat": "points"}).text
-#         team.reg_wins = 0
-
-#     return teams
-
 def points_per(teams):
     for team in teams:
         team.points_per_game()
@@ -132,9 +103,9 @@ def sort(teams):
 def get_year():
     while True:
         try:
-            year = input("Enter year in the format YYYY (2015-2020): ")
-            if int(year) < 2015 or int(year) > 2020:
-                print("Only 2015-2020 is valid because of expansion teams and relocations.")
+            year = input("Enter year in the format YYYY (1947-2020): ")
+            if int(year) < 1947 or int(year) > 2020:
+                print("Only dates from 1947 to the present year are valid.")
                 continue
 
             return year
@@ -142,18 +113,72 @@ def get_year():
             print("Please enter a year in the format YYYY")
             continue
 
+def get_nba_links(year):
+
+    url = ""
+    if int(year) < 1950:
+        url = f"https://www.basketball-reference.com/leagues/BAA_{year}_ratings.html"
+    else:
+        url = f"https://www.basketball-reference.com/leagues/NBA_{year}_ratings.html"
+
+    request = requests.get(url)
+
+    if request.status_code != 200:
+        print("Connection Failed -> " + url)
+        return []
+
+    links = []
+
+    page = request.text
+    page = bs(page, "html.parser")
+
+    table = page.find("table").find("tbody")
+    
+    for row in table.find_all("tr"):
+        a = row.find('a', href=True)["href"]
+        a = a[:-5] + "_games.html"
+        links.append(f"https://www.basketball-reference.com{a}")
+
+    return links
+
+def get_nhl_links(year):
+
+    url = f"https://www.hockey-reference.com/leagues/NHL_{year}_standings.html"
+
+    request = requests.get(url)
+
+    if request.status_code != 200:
+        print("Connection Failed -> " + url)
+        return []
+
+    links = []
+
+    page = request.text
+    page = bs(page, "html.parser")
+
+    table = page.find("table", {"id": "standings"}).find("tbody")
+
+    for row in table.find_all("tr"):
+        a = row.find('a', href=True)["href"]
+        a = a[:-5] + "_games.html"
+        links.append(f"https://www.hockey-reference.com{a}")
+
+    return links
+
+
 if __name__ == "__main__":
     year = get_year()
     print("Running...")
-    nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
-                 "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
-                 "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
-    nba_url = [f"https://www.basketball-reference.com/teams/{code}/{year}_games.html" for code in nba_codes]
-    nhl_codes = ["ANA", "ARI", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", \
-                 "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
-                 "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
-    nhl_url = [f"https://www.hockey-reference.com/teams/{code}/{year}_games.html" for code in nhl_codes]
-    #nhl_url = "https://www.hockey-reference.com/leagues/NHL_2020.html"
+    nba_url = get_nba_links(year)
+    nhl_url = get_nhl_links(year)
+    # nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
+    #              "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
+    #              "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]
+    # nba_url = [f"https://www.basketball-reference.com/teams/{code}/{year}_games.html" for code in nba_codes]
+    # nhl_codes = ["ANA", "ARI", "BOS", "BUF", "CGY", "CAR", "CHI", "COL", "CBJ", "DAL", \
+    #              "DET", "EDM", "FLA", "LAK", "MIN", "MTL", "NSH", "NJD", "NYI", "NYR", \
+    #              "OTT", "PHI", "PIT", "SJS", "STL", "TBL", "TOR", "VAN", "VEG", "WSH", "WPG"]
+    # nhl_url = [f"https://www.hockey-reference.com/teams/{code}/{year}_games.html" for code in nhl_codes]
 
     file = open("hockey_points.csv", "w")
     points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins,ppg,league\n"

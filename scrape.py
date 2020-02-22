@@ -139,7 +139,7 @@ if __name__ == "__main__":
     #nhl_url = "https://www.hockey-reference.com/leagues/NHL_2020.html"
 
     file = open("hockey_points.csv", "w")
-    points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins,ppg\n"
+    points_csv_header = "rank,team name,gp,wins,losses,ot_losses,points,reg_wins,ppg,league\n"
     points_csv_string = ""
 
     teams = nhl_scrape(nhl_url)

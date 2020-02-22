@@ -17,6 +17,7 @@ def nba_scrape(url):
         page = bs(page, "html.parser")
 
         team = Team()
+        team.league = "NBA"
         team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
         #team.name = link[43:46]
         
@@ -58,6 +59,7 @@ def nhl_scrape(url):
         page = bs(page, "html.parser")
 
         team = Team()
+        team.league = "NHL"
         team.name = page.find("h1", {"itemprop": "name"}).span.find_next().text
         #team.name = link[39:42]
         

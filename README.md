@@ -20,8 +20,12 @@ Once you have the `.csv` run `> python plotter.py` to output the lollipop plot o
 
 Why?
 ----
-This was made to practice coding in Python, build a small web scraper, and take data that I could do something fun with, even if it is really simple. Hopefully soon I'll have time to present it as someting nicer than writing to a `.csv` file.
+This was made to practice coding in Python, build a small web scraper, and take that data and do something fun with it, even if it is really simple.
 
-Current Standings (Probably not up to date):
---------------------------------------------
-![Standings](https://i.ibb.co/TRrtj1F/standings.png "NBA + NHL Combined Standings")
+Last Year's Standings:
+----------------------
+![2019 Standings](https://i.ibb.co/TRrtj1F/standings.png "NBA + NHL Combined 2019 Standings")
+
+This Year's Standings by PPG (Probably not up to date):
+-------------------------------------------------------
+![2020 Standings](https://i.ibb.co/TRrtj1F/standings.png "NBA + NHL Combined 2020 Standings")

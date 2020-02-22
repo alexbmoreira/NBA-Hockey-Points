@@ -160,12 +160,18 @@ def get_nhl_links(year):
 
     for row in table.find_all("tr"):
         a = row.find('a', href=True)["href"]
-        a = a[:-5] + "_games.html"
+        a = a.split(".")[0]
+        if(year == "2020"):
+            a += "2020"
+        a += "_games.html"
+        print(a)
         links.append(f"https://www.hockey-reference.com{a}")
+
+    print(str(links))
 
     return links
 
-def write_file():
+def write_file(year):
     print("Running...")
     nba_url = get_nba_links(year)
     nhl_url = get_nhl_links(year)

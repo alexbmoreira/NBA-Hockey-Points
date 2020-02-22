@@ -164,10 +164,7 @@ def get_nhl_links(year):
         if(year == "2020"):
             a += "2020"
         a += "_games.html"
-        print(a)
         links.append(f"https://www.hockey-reference.com{a}")
-
-    print(str(links))
 
     return links
 

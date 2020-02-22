@@ -129,8 +129,22 @@ def sort(teams):
 
     return s
 
+def get_year():
+    while True:
+        try:
+            year = input("Enter year in the format YYYY (2015-2020): ")
+            if int(year) < 2015 or int(year) > 2020:
+                print("Only 2015-2020 is valid because of expansion teams and relocations.")
+                continue
+
+            return year
+        except:
+            print("Please enter a year in the format YYYY")
+            continue
+
 if __name__ == "__main__":
-    year = "2019"
+    year = get_year()
+    print("Running...")
     nba_codes = ["ATL", "BOS", "BRK", "CHO", "CHI", "CLE", "DAL", "DEN", "DET", "GSW", \
                  "HOU", "IND", "LAC", "LAL", "MEM", "MIA", "MIL", "MIN", "NOP", "NYK", \
                  "OKC", "ORL", "PHI", "PHO", "POR", "SAC", "SAS", "TOR", "UTA", "WAS"]

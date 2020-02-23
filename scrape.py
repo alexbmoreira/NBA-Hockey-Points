@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup as bs
 from team import Team
 from operator import attrgetter
+import datetime as dt
+
+CURR_YEAR = dt.datetime.now().year
 
 def nba_scrape(url):
     teams = []
@@ -104,7 +107,7 @@ def get_year():
     while True:
         try:
             year = input("Enter year in the format YYYY (1947-2020): ")
-            if int(year) < 1947 or int(year) > 2020:
+            if int(year) < 1947 or int(year) > CURR_YEAR:
                 print("Only dates from 1947 to the present year are valid.")
                 continue
 
@@ -161,8 +164,8 @@ def get_nhl_links(year):
     for row in table.find_all("tr"):
         a = row.find('a', href=True)["href"]
         a = a.split(".")[0]
-        if(year == "2020"):
-            a += "2020"
+        if(int(year) == CURR_YEAR):
+            a += str(CURR_YEAR)
         a += "_games.html"
         links.append(f"https://www.hockey-reference.com{a}")
 

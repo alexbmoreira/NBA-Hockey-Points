@@ -36,7 +36,7 @@ def axes_ppg(axes, data, my_range):
     plt.yticks(my_range, data["team name"], fontsize=3)
     plt.xticks(list(np.linspace(0,1.75,20)), fontsize=5, rotation=45)
     plt.tight_layout()
-    plt.savefig('standings_points.png', dpi=300, bbox_inches='tight')
+    plt.savefig('standings_ppg.png', dpi=300, bbox_inches='tight')
 
 def axes_st(axes, data, my_range):
     axes.set_xlabel("Points", fontsize=9, fontweight='black', color = '#333F4B')
@@ -52,8 +52,8 @@ def axes_st(axes, data, my_range):
     axes.tick_params(axis="x", labelsize=5)
     plt.sca(axes)
     plt.yticks(my_range, data["team name"], fontsize=3)
-    plt.xticks(list(range(0, 101, 5)), fontsize=5)
+    plt.xticks(list(range(0, data["points"].max() + 5, 5)), fontsize=5, rotation=45)
     plt.tight_layout()
-    plt.savefig('standings_ppg.png', dpi=300, bbox_inches='tight')
+    plt.savefig('standings_points.png', dpi=300, bbox_inches='tight')
     
 graph_data()

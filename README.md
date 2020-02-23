@@ -12,7 +12,7 @@ How to run:
 -----------
 
 Using Python 3:
-`> python scrape.py` will write to a `.csv` called `hockey_points.csv`
+Run `> python scrape.py` and enter the date when prompted. This will write to a `.csv` called `hockey_points.csv`
 
 This file is already sorted based on NHL points tie-breakers.
 
@@ -24,8 +24,8 @@ This was made to practice coding in Python, build a small web scraper, and take 
 
 Last Year's Standings:
 ----------------------
-![2019 Standings](https://i.ibb.co/QkmGh1Z/standings-points.png "NBA + NHL Combined 2019 Standings")
+![2019 Standings](https://i.ibb.co/xjk6fLv/standings-points.png "NBA + NHL Combined 2019 Standings")
 
 This Year's Standings by PPG (Probably not up to date):
 -------------------------------------------------------
-![2020 Standings](https://i.ibb.co/X87CQ9P/standings-ppg.png "NBA + NHL Combined 2020 Standings")
+![2020 Standings](https://i.ibb.co/p1ZJKbq/standings-ppg.png "NBA + NHL Combined 2020 Standings")
